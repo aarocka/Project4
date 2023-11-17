@@ -26,5 +26,10 @@ namespace RestaurantReviewLibrary
                 Restaurant = int.Parse(dr["Restaurant"].ToString());
             }
         }
+
+        public Reservation()
+        {
+
+        }
     }
 }
