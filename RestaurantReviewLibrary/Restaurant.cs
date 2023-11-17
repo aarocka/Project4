@@ -30,5 +30,11 @@ namespace RestaurantReviewLibrary
             }
 
         }
+
+        public Restaurant()
+        {
+
+        }
+
     }
 }
