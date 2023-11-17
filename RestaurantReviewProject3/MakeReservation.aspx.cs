@@ -13,7 +13,7 @@ namespace RestaurantReviewProject3
     public partial class MakeReservation : System.Web.UI.Page
     {
 
-        String webApiUrl = "http://localhost:5054/api/reservation/add";
+        String webApiUrl = "http://localhost:5054/api/reservation/";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,7 +52,7 @@ namespace RestaurantReviewProject3
                 {
                     // Send the Customer object to the Web API that will be used to store a new customer record in the database.
                     // Setup an HTTP POST Web Request and get the HTTP Web Response from the server.
-                    WebRequest request = WebRequest.Create(webApiUrl + "AddCustomer/");
+                    WebRequest request = WebRequest.Create(webApiUrl + "add/");
                     request.Method = "POST";
                     request.ContentLength = jsonReservation.Length;
                     request.ContentType = "application/json";
