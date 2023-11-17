@@ -46,6 +46,10 @@ namespace RestaurantReviewLibrary
 
         }
 
+        public Review()
+        {
+
+        }
 
     }
 }
