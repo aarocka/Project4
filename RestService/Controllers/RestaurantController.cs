@@ -20,7 +20,8 @@ namespace RestService.Controllers
 
         ///////////////////////////////Restaurant/////////////////////////////////////////
 
-        //given a restaurant id, return all reviews for that restaurant
+
+        //given a restaurant id, return all info for that restaurant
         [HttpGet("restaurant/{id}")]
         public Restaurant Get(int id)
         {

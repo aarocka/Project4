@@ -1,6 +1,9 @@
 ﻿using RestaurantReviewLibrary;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Net;
 using System.Web.UI.WebControls;
 using Utilities;
 using SoapApiSearch;
@@ -46,7 +49,26 @@ namespace RestaurantReviewProject3
                 DropDownList3.Items.Insert(0, new ListItem("Select a Category", "0"));
                 DropDownList3.SelectedIndex = 0;
 
-                GridView1.DataSource = SqlDataSource1;
+                //Get all restaurants with get request
+                String webApiUrl = "http://localhost:5054/api/restaurant/all";
+                WebRequest request = WebRequest.Create(webApiUrl);
+                WebResponse response = request.GetResponse();
+
+                // Read the data from the Web Response, which requires working with streams.
+                Stream theDataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(theDataStream);
+                String data = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+
+                // Deserialize a JSON string into a List<Restaurant>.
+                System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+                List<Restaurant> restaurants = js.Deserialize<List<Restaurant>>(data);
+
+
+
+
+                GridView1.DataSource = restaurants;
                 GridView1.DataBind();
             }
         }
