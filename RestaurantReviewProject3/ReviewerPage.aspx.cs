@@ -3,6 +3,8 @@ using System;
 using System.Data;
 using System.Web.UI.WebControls;
 using Utilities;
+using SoapApiSearch;
+using System.Collections.Generic;
 
 namespace RestaurantReviewProject3
 {
@@ -185,6 +187,40 @@ namespace RestaurantReviewProject3
         protected void Button6_Click(object sender, EventArgs e)
         {
             Response.Redirect("AddRestaurant.aspx");
+        }
+
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            // Get the restaurant name from the TextBox
+            string restaurantName = TextBox1.Text;
+
+            // Call the web service method to get the restaurant information
+            SearchRestaurant service = new SearchRestaurant();
+            Restaurant restaurant = service.GetRestaurantByName(restaurantName);
+
+            // Check if the restaurant exists
+            if (restaurant != null)
+            {
+                // Bind the result to GridView2
+                List<Restaurant> restaurantList = new List<Restaurant>();
+                restaurantList.Add(restaurant);
+
+                GridView2.DataSource = restaurantList;
+                GridView2.DataBind();
+
+                // Hide the error message if it was previously displayed
+                lblErrorMessage.Visible = false;
+            }
+            else
+            {
+                // Display the error message
+                lblErrorMessage.Text = "Sorry, the restaurant doesn't exist.";
+                lblErrorMessage.Visible = true;
+
+                // Clear GridView2
+                GridView2.DataSource = null;
+                GridView2.DataBind();
+            }
         }
 
 
