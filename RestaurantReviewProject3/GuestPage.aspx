@@ -23,7 +23,7 @@
                     <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" />
                     <asp:BoundField DataField="Category" HeaderText="Category" SortExpression="Category" />
                     <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
-                    <asp:ImageField DataImageUrlField="Picture" HeaderText="Picture">
+                    <asp:ImageField DataImageUrlField="IMGURL" HeaderText="Picture">
                         <ControlStyle Width="100px" Height="100px" />
                     </asp:ImageField>
                     <asp:TemplateField HeaderText=" See Reviews">

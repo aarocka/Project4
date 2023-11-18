@@ -35,8 +35,6 @@ namespace RestaurantReviewProject3
                 // Deserialize a JSON string into a List<Review>
                 System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
                 System.Collections.Generic.List<Review> restReviews = js.Deserialize<System.Collections.Generic.List<Review>>(data);
-                
-
 
 
 
