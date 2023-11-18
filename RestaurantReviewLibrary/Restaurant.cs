@@ -22,7 +22,7 @@ namespace RestaurantReviewLibrary
                 DBConnect dbConnect = new DBConnect();
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.CommandText = "GetRestaurantAverages";
+                sqlCommand.CommandText = "GetALLRestaurantsWithAVG";
                 sqlCommand.Parameters.AddWithValue("@RestaurantId", id);
 
                 DataSet ds = dbConnect.GetDataSetUsingCmdObj(sqlCommand);
