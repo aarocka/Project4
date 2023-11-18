@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
 using Utilities;
 
 namespace RestaurantReviewLibrary
@@ -11,6 +12,7 @@ namespace RestaurantReviewLibrary
         public string Category { get; set; }
         public string Phone { get; set; }
         public string IMGURL { get; set; }
+        public string AVG { get; set; }
 
         public Restaurant(int id)
         {
@@ -18,7 +20,12 @@ namespace RestaurantReviewLibrary
             if (id != 0)
             {
                 DBConnect dbConnect = new DBConnect();
-                DataSet ds = dbConnect.GetDataSet("SELECT * FROM Restaurants WHERE Id = " + id.ToString());
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.CommandText = "GetRestaurantAverages";
+                sqlCommand.Parameters.AddWithValue("@RestaurantId", id);
+
+                DataSet ds = dbConnect.GetDataSetUsingCmdObj(sqlCommand);
                 DataRow dr = ds.Tables[0].Rows[0];
 
                 Id = id;
@@ -27,6 +34,7 @@ namespace RestaurantReviewLibrary
                 Category = dr["Category"].ToString();
                 Phone = dr["Phone"].ToString();
                 IMGURL = dr["Picture"].ToString();
+                AVG = dr["AVG"].ToString();
             }
 
         }

@@ -53,7 +53,7 @@
                     <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                     <asp:BoundField DataField="AVG" HeaderText="Average Rating" SortExpression="AVG" />
 
-                    <asp:ImageField DataImageUrlField="Picture" HeaderText="Picture">
+                    <asp:ImageField DataImageUrlField="IMGURL" HeaderText="Picture">
                         <ControlStyle Width="100px" Height="100px" />
                     </asp:ImageField>
 
