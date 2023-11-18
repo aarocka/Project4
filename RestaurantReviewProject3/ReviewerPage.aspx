@@ -37,6 +37,28 @@
             </p>
             <h2>Reviewer's Page</h2>
             <p>
+            <asp:Label ID="Label3" runat="server" Text="Search for a Restaurant"></asp:Label>
+            <br />
+            <br />
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:Button ID="Button7" runat="server" Text="Search" OnClick="Button7_Click" />
+            <br />
+                <asp:Label ID="lblErrorMessage" runat="server" Text="Label" ForeColor="Red" Visible="False"></asp:Label>
+            <br />
+            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand" DataKeyNames="Id" CssClass="gridview-font" Width="600px">
+                <Columns>
+                    <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" InsertVisible="False" ReadOnly="True" Visible="False" />
+                    <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+                    <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" />
+                    <asp:BoundField DataField="Category" HeaderText="Category" SortExpression="Category" />
+                    <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
+                    <asp:ImageField DataImageUrlField="IMGURL" HeaderText="Picture">
+                        <ControlStyle Width="100px" Height="100px" />
+                    </asp:ImageField> 
+                 </Columns>
+            </asp:GridView>
+            <br />
+            <br />
             <asp:Label ID="Label1" runat="server" Text="Sort by Categories:"></asp:Label>
             </p>
             <asp:DropDownList ID="DropDownList2" runat="server" DataTextField="Category" DataValueField="Category"></asp:DropDownList>
