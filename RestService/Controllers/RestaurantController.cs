@@ -13,11 +13,22 @@ namespace RestService.Controllers
         [HttpGet("login/{name}/{password}/{isReviewer}")]
         public UserSession Get(string name, bool isReviewer, string password)
         {
+
+            UserSession userSession = new UserSession(name, isReviewer, password);
             //create user session
-            return new UserSession(name, isReviewer, password);
+            int userID = 0;
+            if (HttpContext.Session.GetString("userSession") != null)
+            {
+                userID = (int)HttpContext.Session.GetInt32("userSession");
+
+            }
+            userID = userSession.Id;
+            HttpContext.Session.SetInt32("userSession", userID);
+
+            return userSession;
         }
-        
-        
+
+
         ///////////////////////////////Restaurant/////////////////////////////////////////
 
 
