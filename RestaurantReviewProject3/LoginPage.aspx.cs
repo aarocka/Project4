@@ -20,7 +20,7 @@ namespace RestaurantReviewProject3
             Session["theSession"] = session;
             if (session == null)
             {
-                session = new UserSession("Guest", true);
+                session = new UserSession("Guest", true , "1234");
             }
             Session["theSession"] = session;
             Response.Redirect("GuestPage.aspx");
@@ -37,7 +37,7 @@ namespace RestaurantReviewProject3
                 case "Representative":
                     if (session == null)
                     {
-                        session = new UserSession(TextBox1.Text, false);
+                        session = new UserSession(TextBox1.Text, false, TextBox2.Text);
                     }
                     Session["theSession"] = session;
 
@@ -57,7 +57,7 @@ namespace RestaurantReviewProject3
                 case "Reviewer":
                     if (session == null)
                     {
-                        session = new UserSession(TextBox1.Text, true);
+                        session = new UserSession(TextBox1.Text, true, TextBox2.Text);
                     }
                     Session["theSession"] = session;
 

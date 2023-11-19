@@ -10,14 +10,14 @@ namespace RestService.Controllers
     public class RestaurantController : Controller
     {
 
-        [HttpGet("login/{name}/{isReviewer}")]
-        public UserSession Get(string name, bool isReviewer)
+        [HttpGet("login/{name}/{password}/{isReviewer}")]
+        public UserSession Get(string name, bool isReviewer, string password)
         {
-            return new UserSession(name, isReviewer);
+            //create user session
+            return new UserSession(name, isReviewer, password);
         }
-
-        //TODO account creation
-
+        
+        
         ///////////////////////////////Restaurant/////////////////////////////////////////
 
 
