@@ -10,13 +10,24 @@ namespace RestService.Controllers
     public class RestaurantController : Controller
     {
 
-        [HttpGet("login/{name}/{isReviewer}")]
-        public UserSession Get(string name, bool isReviewer)
+        [HttpGet("login/{name}/{password}/{isReviewer}")]
+        public UserSession Get(string name, bool isReviewer, string password)
         {
-            return new UserSession(name, isReviewer);
+
+            UserSession userSession = new UserSession(name, isReviewer, password);
+            //create user session
+            int userID = 0;
+            if (HttpContext.Session.GetString("userSession") != null)
+            {
+                userID = (int)HttpContext.Session.GetInt32("userSession");
+
+            }
+            userID = userSession.Id;
+            HttpContext.Session.SetInt32("userSession", userID);
+
+            return userSession;
         }
 
-        //TODO account creation
 
         ///////////////////////////////Restaurant/////////////////////////////////////////
 

@@ -1,5 +1,10 @@
 ﻿using RestaurantReviewLibrary;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Web.Configuration;
+using System.Web.Script.Serialization;
 using System.Web.UI.WebControls;
 
 namespace RestaurantReviewProject3
@@ -17,8 +22,26 @@ namespace RestaurantReviewProject3
                     Response.Redirect("LoginPage.aspx");
                 }
 
+                //Get all restaurants using a GET request
+                String webApiUrl = "http://localhost:5054/api/restaurant/all";
+                WebRequest request = WebRequest.Create(webApiUrl);
+                WebResponse response = request.GetResponse();
 
-                GridView1.DataSource = SqlDataSource1;
+                // Read the data from the Web Response, which requires working with streams.
+                Stream theDataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(theDataStream);
+                String data = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+
+                // Deserialize a JSON string into a List<Restaurant>
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                List<Restaurant> restaurantList = js.Deserialize<List<Restaurant>>(data);
+                
+
+
+
+                GridView1.DataSource = restaurantList;
                 GridView1.DataBind();
             }
         }
