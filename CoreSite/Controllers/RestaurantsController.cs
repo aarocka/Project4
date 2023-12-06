@@ -33,9 +33,6 @@ namespace CoreSite.Controllers
             response.Close();
 
             //deserialize a json string into a list<restaurant>
-            Console.WriteLine(data);
-
-
             List<Restaurant> restaurants = JsonSerializer.Deserialize<List<Restaurant>>(data,new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
