@@ -24,6 +24,10 @@
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
             <br />
             <br />
+            <strong>Password:</strong>
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>    
+            <br />
+            <br />
             <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click" Style="font-weight: 700" />
             <br />
             <br />

@@ -1,7 +1,11 @@
 ﻿using RestaurantReviewLibrary;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Net;
+using System.Web.Script.Serialization;
 using System.Web.UI.WebControls;
 using Utilities;
 
@@ -22,11 +26,31 @@ namespace RestaurantReviewProject3
                     Response.Redirect("LoginPage.aspx");
                 }
 
+                //Get reservations for a given restaurant using a GET request
+                String webApiUrl = "http://localhost:5054/api/management/"+session.RestaurantID+"/reservation";
+                WebRequest request = WebRequest.Create(webApiUrl);
+                WebResponse response = request.GetResponse();
+
+                // Read the data from the Web Response, which requires working with streams.
+                Stream theDataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(theDataStream);
+                String data = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+
+                // Deserialize a JSON string into a List<Reservations>
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                List<Reservation> reservations = js.Deserialize<List<Reservation>>(data);
+
+
+
+
+                /*
                 DBConnect dBConnect = new DBConnect();
                 DataSet myDataSet = new DataSet();
                 myDataSet = dBConnect.GetDataSet("Select * FROM Reservations WHERE Restaurant = '" + session.RestaurantID + "';");
-
-                GridView1.DataSource = myDataSet;
+                */
+                GridView1.DataSource = reservations;
                 GridView1.DataBind();
             }
         }
