@@ -12,6 +12,9 @@ namespace CoreSite.Controllers
         // GET: RestaurantsController
         public ActionResult Index()
         {
+
+            ViewBag.UserName = HttpContext.Session.GetString("Username");
+
             /*
             List<Restaurant> restaurants = new List<Restaurant>();
 
