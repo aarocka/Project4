@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RestaurantReviewLibrary;
 
 namespace CoreSite.Controllers
 {
@@ -18,12 +19,28 @@ namespace CoreSite.Controllers
             var username = collection["Username"];
             var password = collection["Password"];
 
+            //check if username and password are correct using a get request
+            string uri = "http://localhost:5054/api/login/" + username + "/" + password + "/" + "true";
+            System.Net.WebRequest request = System.Net.WebRequest.Create(uri);
+            System.Net.WebResponse response = request.GetResponse();
 
+            //read the data from the web response, which requires working with streams
+            System.IO.Stream theDataStream = response.GetResponseStream();
+            System.IO.StreamReader reader = new System.IO.StreamReader(theDataStream);
+            string data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
 
-            if (username == "admin" && password == "admin")
+            //Deserialize a json string into a UserSession object
+            UserSession userSession = System.Text.Json.JsonSerializer.Deserialize<UserSession>(data, new System.Text.Json.JsonSerializerOptions
             {
-                HttpContext.Session.SetString("Username", username);
-                HttpContext.Session.SetString("Password", password);
+                PropertyNameCaseInsensitive = true
+            });
+
+
+            if (userSession.Id!=0&&userSession.Reviewer==true)
+            {
+                HttpContext.Session.Set("UserSession", System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(userSession));
                 return RedirectToAction("Index", "Restaurants");
             }
             else

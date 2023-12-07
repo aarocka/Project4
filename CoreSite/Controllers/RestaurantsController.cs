@@ -4,6 +4,7 @@ using RestaurantReviewLibrary;
 using System.Net;
 using System.IO;
 using System.Text.Json;
+using Humanizer;
 
 namespace CoreSite.Controllers
 {
@@ -12,9 +13,20 @@ namespace CoreSite.Controllers
         // GET: RestaurantsController
         public ActionResult Index()
         {
-
-            ViewBag.UserName = HttpContext.Session.GetString("Username");
-
+            if (HttpContext.Session.GetString("UserSession") == null)
+            {
+                ViewBag.UserName = "Guest";
+                //hide the logout button
+                //hide the add restaurant button
+                //hide my reviews button
+            }
+            else
+            {
+                ViewBag.UserName = HttpContext.Session.GetString("Name");
+                //show the logout button
+                //show the add restaurant button
+                //show my reviews button
+            }
             /*
             List<Restaurant> restaurants = new List<Restaurant>();
 
