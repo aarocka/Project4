@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReviewLibrary;
+using CoreSite.Models;
+using System.Net;
+using System.Text.Json;
 
 namespace CoreSite.Controllers
 {
@@ -14,8 +17,52 @@ namespace CoreSite.Controllers
         }
         public ActionResult Id(int id)
         {
+            //Initialize model
+            RestaurantModel restaurantModel = new RestaurantModel();
+
+            //Make api call to get restaurant info
+            string webApiUrl = "http://localhost:5054/api/restaurant/" + id;
+            WebRequest request = WebRequest.Create(webApiUrl);
+            WebResponse response = request.GetResponse();
+
+            //read the data from the web response, which requires working with streams
+            System.IO.Stream theDataStream = response.GetResponseStream();
+            System.IO.StreamReader reader = new System.IO.StreamReader(theDataStream);
+            string data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+
+            //Deserialize a json string into a restaurant object
+            Restaurant restaurant = JsonSerializer.Deserialize<Restaurant>(data, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            restaurantModel.Restaurant = restaurant;
+            
+
+            //Make api call to get reviews for restaurant
+            webApiUrl = "http://localhost:5054/api/restaurant/" + id +"/review";
+            request = WebRequest.Create(webApiUrl);
+            response = request.GetResponse();
+
+            //read the data from the web response, which requires working with streams
+            theDataStream = response.GetResponseStream();
+            reader = new System.IO.StreamReader(theDataStream);
+            data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+
+            //Deserialize a json string into a list of reviews
+            List<Review> reviews = JsonSerializer.Deserialize<List<Review>>(data, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            restaurantModel.Reviews = reviews;
+            
             ViewBag.Id = id;
-            return View();
+            return View(restaurantModel);
         }
 
         // GET: RestaurantController/Details/5
