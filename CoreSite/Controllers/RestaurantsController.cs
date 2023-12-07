@@ -54,6 +54,11 @@ namespace CoreSite.Controllers
             return View();
         }
 
+        public ActionResult MakeReservation(int id)
+        {
+            return RedirectToAction("Id", "Reservation", new { id });
+        }
+
         // POST: RestaurantsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
