@@ -7,10 +7,14 @@ namespace CoreSite.Controllers
     public class RestaurantController : Controller
     {
         // GET: RestaurantController
-        [HttpGet]
         public ActionResult Index()
         {
 
+            return View();
+        }
+        public ActionResult Id(int id)
+        {
+            ViewBag.Id = id;
             return View();
         }
 

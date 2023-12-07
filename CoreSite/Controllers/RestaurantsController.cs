@@ -45,8 +45,7 @@ namespace CoreSite.Controllers
         // GET: RestaurantsController/Details/5
         public ActionResult Details(int id)
         {
-            //brings us to a restaurant details page
-            return RedirectToAction("Index","Restaurant");
+            return RedirectToAction("Id", "Restaurant", new { id });
         }
 
         // GET: RestaurantsController/Create
