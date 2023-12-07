@@ -38,7 +38,15 @@ namespace RestaurantReviewLibrary
             }
 
         }
-
+        public Restaurant(int id, string name, string category, string address, string phone, string imgurl)
+        {
+            Id = id;
+            Name = name;
+            Address = address;
+            Category = category;
+            Phone = phone;
+            IMGURL = imgurl;
+        }
         public Restaurant() { }
 
     }

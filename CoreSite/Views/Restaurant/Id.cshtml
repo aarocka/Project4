@@ -1,0 +1,73 @@
+﻿@model RestaurantModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@Model.Restaurant.Name</h1>
+<br />
+<h2>@Model.Restaurant.Address</h2>
+<br />
+<h2>@Model.Restaurant.Phone</h2>
+<br />
+<h2>@Model.Restaurant.Category</h2>
+<br />
+<h2>@Model.Restaurant.AVG</h2>
+<br />
+<img src="@Model.Restaurant.IMGURL" width="150" height="150"/>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                FoodQualityRating
+            </th>
+            <th>
+                AtmosphereRating
+            </th>
+            <th>
+                PriceLevelRating
+            </th>
+            <th>
+                ServiceRating
+            </th>
+            <th>
+                AVGRating
+            </th>
+            <th>
+                ReviewText
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var review in Model.Reviews)
+        {
+            <tr>
+                <td>
+                    @review.ReviewerName
+                </td>
+                <td>
+                    @review.FoodQualityRating
+                </td>
+                <td>
+                    @review.AtmosphereRating
+                </td>
+                <td>
+                    @review.PriceLevelRating
+                </td>
+                <td>
+                    @review.ServiceRating
+                </td>
+                <td>
+                    @review.AVGRating
+                <td>
+                    @review.ReviewText
+                </td>
+            </tr>
+        }
+    </tbody>
+ </table>
