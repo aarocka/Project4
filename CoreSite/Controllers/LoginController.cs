@@ -55,7 +55,7 @@ namespace CoreSite.Controllers
             {
                 //user is a restaurant owner
                 HttpContext.Session.Set("UserSession", System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(userSession));
-                return Redirect("http://example.com");
+                return RedirectToAction("Index", "Representative");
             }
             else
             {
