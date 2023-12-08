@@ -87,6 +87,7 @@ namespace RestaurantReviewLibrary
             this.password = password;
         }
 
+        public UserSession() { }
 
         public int Id { get => id; set => id = value; }
         public string UserName { get => userName; set => userName = value; }

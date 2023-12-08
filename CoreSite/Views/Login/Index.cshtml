@@ -4,9 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<h4>LoginModel</h4>
+<h1>Login</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,6 +20,11 @@
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsReviewer" /> Check = Reviewer // Uncheck = Representative
+                </label>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -29,11 +32,17 @@
     </div>
 </div>
 
+@if (ViewBag.Error != null)
+{
+    <div class="error-message">
+        <h1>@ViewBag.Error</h1>
+    </div>
+}
+
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-<h1>@ViewBag.Error</h1>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CoreSite.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReviewLibrary;
 
@@ -14,13 +15,18 @@ namespace CoreSite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(IFormCollection collection)
+        public ActionResult Index(LoginModel model)
         {
-            var username = collection["Username"];
-            var password = collection["Password"];
-
+            var username = model.Username;
+            var password = model.Password;
+            var reviewer = model.IsReviewer;
+            
+            //this should work , but it doesn't.  I don't know why. The form return both true and false
+            //var reviewer = collection["IsReviewer"].ToString().ToLower() == "true" ? true : false;
+            
+            
             //check if username and password are correct using a get request
-            string uri = "http://localhost:5054/api/login/" + username + "/" + password + "/" + "true";
+            string uri = "http://localhost:5054/api/login/" + username + "/" + password + "/" + reviewer;
             System.Net.WebRequest request = System.Net.WebRequest.Create(uri);
             System.Net.WebResponse response = request.GetResponse();
 
@@ -34,14 +40,22 @@ namespace CoreSite.Controllers
             //Deserialize a json string into a UserSession object
             UserSession userSession = System.Text.Json.JsonSerializer.Deserialize<UserSession>(data, new System.Text.Json.JsonSerializerOptions
             {
-                PropertyNameCaseInsensitive = true
+                PropertyNameCaseInsensitive = true,
+                IncludeFields = true
             });
 
 
             if (userSession.Id!=0&&userSession.Reviewer==true)
             {
+                //user is a reviewer
                 HttpContext.Session.Set("UserSession", System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(userSession));
                 return RedirectToAction("Index", "Restaurants");
+            }
+            else if (userSession.Id != 0 && userSession.Reviewer == false)
+            {
+                //user is a restaurant owner
+                HttpContext.Session.Set("UserSession", System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(userSession));
+                return Redirect("http://example.com");
             }
             else
             {
