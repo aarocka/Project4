@@ -4,9 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<h4>LoginModel</h4>
+<h1>Login</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,7 +22,7 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsReviewer" /> @Html.DisplayNameFor(model => model.IsReviewer)
+                    <input class="form-check-input" asp-for="IsReviewer" /> Check = Reviewer // Uncheck = Representative
                 </label>
             </div>
             <div class="form-group">
@@ -33,6 +31,14 @@
         </form>
     </div>
 </div>
+
+@if (ViewBag.Error != null)
+{
+    <div class="error-message">
+        <h1>@ViewBag.Error</h1>
+    </div>
+}
+
 
 <div>
     <a asp-action="Index">Back to List</a>
