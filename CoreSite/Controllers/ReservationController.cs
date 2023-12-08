@@ -57,8 +57,23 @@ namespace CoreSite.Controllers
 
             if (data == "true")
             {
-                //Display Success Message
-                return Redirect("https://example.com");
+                
+
+                //grab session and check if user is reviewer
+                string session = HttpContext.Session.GetString("UserSession");
+                //deserialize session
+                UserSession userSession = JsonSerializer.Deserialize<UserSession>(session);
+
+                //if user is reviewer, redirect to reviewer dashboard
+                if (userSession.Reviewer)
+                {
+                    return RedirectToAction("Index", "Restaurants");
+                }
+                else
+                {
+                    //redirect to representative dashboard
+                    return RedirectToAction("Index", "Representative");
+                }
             }
             else
             {

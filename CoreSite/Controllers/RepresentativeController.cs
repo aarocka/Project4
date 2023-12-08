@@ -64,7 +64,24 @@ namespace CoreSite.Controllers
         // GET: RepresentativeController/Create
         public ActionResult Create()
         {
-            return View();
+            //grab the restaurant id from the session
+            UserSession userSession = JsonSerializer.Deserialize<UserSession>(HttpContext.Session.GetString("UserSession"), new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                IncludeFields = true
+            });
+
+            int id = int.Parse(userSession.RestaurantID.ToString());
+
+            return RedirectToAction("Id", "Reservation", new { id });
+        }
+
+        public ActionResult Reservation(int id)
+        {
+            //create reservation object
+            Reservation reservation = new Reservation();
+            reservation.Restaurant = id;
+            return View(reservation);
         }
 
         // POST: RepresentativeController/Create
