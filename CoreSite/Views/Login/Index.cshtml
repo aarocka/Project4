@@ -22,6 +22,11 @@
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsReviewer" /> @Html.DisplayNameFor(model => model.IsReviewer)
+                </label>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -32,8 +37,6 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-<h1>@ViewBag.Error</h1>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
