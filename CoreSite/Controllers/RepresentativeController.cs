@@ -16,7 +16,7 @@ namespace CoreSite.Controllers
             {
                 //user is not logged in
                 //Redirect to login page
-                return Redirect("http://example.com");
+                return RedirectToAction("Index", "Login");
             }
             else
             {
@@ -166,7 +166,7 @@ namespace CoreSite.Controllers
             {
                 //user is not logged in
                 //Redirect to login page
-                return Redirect("http://example.com");
+                return RedirectToAction("Index", "Login");
             }
             else
             {
@@ -214,7 +214,7 @@ namespace CoreSite.Controllers
             {
                 //user is not logged in
                 //Redirect to login page
-                return Redirect("http://example.com");
+                return RedirectToAction("Index", "Login");
             }
             else
             {
@@ -252,6 +252,26 @@ namespace CoreSite.Controllers
 
                 //Redirect to index
                 return RedirectToAction(nameof(Index));
+            }
+        }
+
+        // GET: RepresentativeController/Logout
+        public ActionResult Logout()
+        {
+            //check if session is null
+            if (HttpContext.Session.GetString("UserSession") == null)
+            {
+                //user is not logged in
+                //Redirect to login page
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                //delete session
+                HttpContext.Session.Remove("UserSession");
+
+                //Redirect to login page
+                return RedirectToAction("Index","Login");
             }
         }
     }
