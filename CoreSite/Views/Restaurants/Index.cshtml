@@ -4,23 +4,51 @@
     ViewData["Title"] = "Index";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"] - Your Application Name</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyPdOFBlC8stBbC8AIC6Vj9QBL1zQGKGSrFghj5NPxxl3jpJyjcoGfHl/vzhFp" crossorigin="anonymous">
-</head>
 <body>
     <div class="container mt-4">
         <h1 class="text-primary text-center mb-4">Welcome! @ViewBag.UserName</h1>
-        <h1 class="text-center">Reviewer's Page</h1>
-        <br />
+        <h2 class="text-center">Reviewer's Page</h2>
         <div class="text-center mb-4">
             <a asp-action="Create" class="btn btn-success">Create New</a>
             <a asp-action="Logout" class="btn btn-danger">Logout</a>
         </div>
+
+        <h3 class="text-center mb-4">Featured Restaurants</h3>
+
+        <!-- Bootstrap Carousel -->
+        <div id="featuredRestaurantsCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://media-cdn.grubhub.com/image/upload/d_search:browse-images:default.jpg/w_100,q_80,fl_lossy,dpr_2.0,c_fit,f_auto,h_100/kvjje3pptp0nkjq2vksq" class="d-block" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://www.lmnopcreative.com/wp-content/uploads/2021/06/VIA_LOCUSTA_FOR_LMNOP_WEBSITE13-1-1024x652.jpg" class="d-block" alt="Second slide">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="https://www.balebakery.com/uploads/b/7750e350-f540-11eb-8548-ed8837055a0d/Ba_Le-Secondary_Black.png" class="d-block" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://static.ucraft.net/fs/ucraft/userFiles/pho75aurora/images/small-logo.png?v=1587217413" class="d-block" alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cdn0.dontpayfull.com/media/logos/size/120x120/maggianos.com.jpg?v=20190621131938536534" class="d-block" alt="Fifth slide">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Chick-fil-A_Logo.svg/2560px-Chick-fil-A_Logo.svg.png" class="d-block" alt="Sixth slide">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#featuredRestaurantsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#featuredRestaurantsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!-- End of Carousel -->
+        <br />
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
@@ -68,7 +96,7 @@
                             @Html.DisplayFor(modelItem => item.Phone)
                         </td>
                         <td>
-                            <img src="@Html.DisplayFor(modelItem => item.IMGURL)" class="img-fluid" width="150" height="150" />
+                            <img src="@item.IMGURL" class="img-fluid" width="150" height="150" />
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.AVG)
@@ -83,4 +111,3 @@
         </table>
     </div>
 </body>
-</html>
