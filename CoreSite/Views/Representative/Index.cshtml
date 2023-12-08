@@ -10,17 +10,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"] - Your Application Name</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyPdOFBlC8stBbC8AIC6Vj9QBL1zQGKGSrFghj5NPxxl3jpJyjcoGfHl/vzhFp" crossorigin="anonymous">
 </head>
 <body>
     <div class="container mt-4">
         <h1 class="text-primary text-center mb-4">Welcome! @ViewBag.UserName</h1>
+        <h1 class="text-center">Representative Page</h1>
+        <br />
         <div class="text-center mb-4">
             <a asp-action="Create" class="btn btn-primary">Create New</a>
             <a asp-action="UpdateInfo" class="btn btn-secondary">Update Info</a>
             <a asp-action="Logout" class="btn btn-danger">Logout</a>
         </div>
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped table-bordered">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">
@@ -38,7 +39,7 @@
                     <th scope="col">
                         @Html.DisplayNameFor(model => model.Restaurant)
                     </th>
-                    <th scope="col">Actions</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -70,6 +71,5 @@
             </tbody>
         </table>
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js" integrity="sha384-oesi62hX3h5Pllo91J0jHf7JHx0XXmkjYh5TyZq3/l2RfHFS5Pj8tqI5Lcuscb2x" crossorigin="anonymous"></script>
 </body>
 </html>
