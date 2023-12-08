@@ -15,6 +15,7 @@ namespace CoreSite.Controllers
         {
             if (HttpContext.Session.GetString("UserSession") == null)
             {
+                //user is not logged in
                 ViewBag.UserName = "Guest";
                 ViewBag.HideStuff = "visibility: collapse;";
                 //hide the logout button
