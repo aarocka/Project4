@@ -11,6 +11,12 @@ namespace RestService.Controllers
     {
 
         [HttpGet("login/{name}/{password}/{isReviewer}")]
+        public UserSession Login(string name, string password, bool isReviewer)
+        {
+            UserSession userSession = new UserSession(name, isReviewer, password);
+            return userSession;
+        }
+        /*
         public UserSession Get(string name, bool isReviewer, string password)
         {
 
@@ -22,11 +28,12 @@ namespace RestService.Controllers
                 userID = (int)HttpContext.Session.GetInt32("userSession");
 
             }
+
             userID = userSession.Id;
             HttpContext.Session.SetInt32("userSession", userID);
 
             return userSession;
-        }
+        }*/
 
 
         ///////////////////////////////Restaurant/////////////////////////////////////////

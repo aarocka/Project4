@@ -34,7 +34,8 @@ namespace CoreSite.Controllers
             //Deserialize a json string into a UserSession object
             UserSession userSession = System.Text.Json.JsonSerializer.Deserialize<UserSession>(data, new System.Text.Json.JsonSerializerOptions
             {
-                PropertyNameCaseInsensitive = true
+                PropertyNameCaseInsensitive = true,
+                IncludeFields = true
             });
 
 
@@ -42,6 +43,11 @@ namespace CoreSite.Controllers
             {
                 HttpContext.Session.Set("UserSession", System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(userSession));
                 return RedirectToAction("Index", "Restaurants");
+            }
+            else if (userSession.Id != 0 && userSession.Reviewer == false)
+            {
+                HttpContext.Session.Set("UserSession", System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(userSession));
+                return Redirect("http://example.com");
             }
             else
             {

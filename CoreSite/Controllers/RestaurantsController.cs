@@ -16,16 +16,27 @@ namespace CoreSite.Controllers
             if (HttpContext.Session.GetString("UserSession") == null)
             {
                 ViewBag.UserName = "Guest";
+                ViewBag.HideStuff = "visibility: collapse;";
                 //hide the logout button
                 //hide the add restaurant button
                 //hide my reviews button
             }
             else
             {
-                ViewBag.UserName = HttpContext.Session.GetString("Name");
+                //user is logged in
+
+                //Deserialize HttpContext.Session.GetString("UserSession");
+                UserSession userSession = JsonSerializer.Deserialize<UserSession>(HttpContext.Session.GetString("UserSession"), new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    IncludeFields = true
+                });
+
+                ViewBag.UserName = userSession.UserName;
                 //show the logout button
                 //show the add restaurant button
                 //show my reviews button
+                ViewBag.HideStuff = "visibility: visable;";
             }
             /*
             List<Restaurant> restaurants = new List<Restaurant>();
