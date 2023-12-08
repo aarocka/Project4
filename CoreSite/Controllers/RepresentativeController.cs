@@ -105,8 +105,25 @@ namespace CoreSite.Controllers
 
         // GET: RepresentativeController/Delete/5
         public ActionResult Delete(int id)
-        {
-            return View();
+        { 
+            //call the api to delete the reservation
+            //make a delete request to the api
+            string webApiUrl = "http://localhost:5054/api/management/delete/reservation/"+id;
+
+            //make a delete request to the api
+            WebRequest request = WebRequest.Create(webApiUrl);
+            request.Method = "DELETE";
+            WebResponse response = request.GetResponse();
+
+            //read the data from the web response, which requires working with streams
+            System.IO.Stream theDataStream = response.GetResponseStream();
+            System.IO.StreamReader reader = new System.IO.StreamReader(theDataStream);
+            string data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+
+            //Redirect to index
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: RepresentativeController/Delete/5
