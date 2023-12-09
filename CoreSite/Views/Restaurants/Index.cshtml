@@ -9,7 +9,8 @@
         <h1 class="text-primary text-center mb-4">Welcome! @ViewBag.UserName</h1>
         <h2 class="text-center">Reviewer's Page</h2>
         <div class="text-center mb-4">
-            <a asp-action="Create" class="btn btn-success">Create New</a>
+            <a asp-action="Create" class="btn btn-success">Add a Restaurant</a>
+            <a asp-action="Create" class="btn btn-primary">See Your Reviews</a>
             <a asp-action="Logout" class="btn btn-danger">Logout</a>
         </div>
 
@@ -103,6 +104,7 @@
                         </td>
                         <td>
                             <a asp-action="MakeReservation" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Make Reservation</a>
+                            <a asp-action="MakeReview" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Make Review</a>
                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Details</a>
                         </td>
                     </tr>

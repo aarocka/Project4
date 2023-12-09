@@ -4,46 +4,62 @@
     ViewData["Title"] = "Index";
 }
 
-<h1><img src="https://www.shareicon.net/data/256x256/2016/05/25/770336_fork_512x512.png" alt="Icon" style="width: 100px; height: 100px; vertical-align: middle; margin-right: 10px;" /> Login Here!</h1>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Index">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsReviewer" /> Check = Reviewer // Uncheck = Representative
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<style>
+    .top-space {
+        padding-top: 10vh; /* Adjust the value to control the whitespace on top */
+    }
+</style>
+
+<div class="container top-space">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <h1 class="text-center">
+                <img src="https://www.shareicon.net/data/256x256/2016/05/25/770336_fork_512x512.png"
+                     alt="Icon"
+                     style="width: 100px; height: 100px; vertical-align: middle; margin-right: 10px;" />
+                Login Here!
+            </h1>
+            <hr />
+            <form asp-action="Index">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Username" class="control-label"></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check text-center">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsReviewer" />
+                        Check = Reviewer // Uncheck = Representative
+                    </label>
+                </div>
+                <br />
+                <div class="form-group text-center">
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                </div>
+                <br />
+                <div class="text-center">
+                    <a asp-action="Index" class="btn btn-secondary">Login as Guest</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 @if (ViewBag.Error != null)
 {
-    <div class="error-message">
+    <div class="error-message text-center">
         <h1>@ViewBag.Error</h1>
     </div>
 }
 
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
