@@ -1,45 +1,35 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RestaurantReviewLibrary;
-using System.Text.Json;
 
 namespace CoreSite.Controllers
 {
-    public class ReviewController : Controller
+    public class CreateAccountController : Controller
     {
-        // GET: ReviewController
+        // GET: CreateAccountController
         public ActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Id(int id)
-        {
-            Review review = new Review();
-            review.RestaurantId = id;
-            return View(review);
-        }
-
-        // GET: ReviewController/Details/5
+        // GET: CreateAccountController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
-        // GET: ReviewController/Create
+
+        // GET: CreateAccountController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ReviewController/Create
+        // POST: CreateAccountController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id, IFormCollection collection)
+        public ActionResult Create(IFormCollection collection)
         {
-
             try
             {
-                
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -48,13 +38,13 @@ namespace CoreSite.Controllers
             }
         }
 
-        // GET: ReviewController/Edit/5
+        // GET: CreateAccountController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ReviewController/Edit/5
+        // POST: CreateAccountController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -69,13 +59,13 @@ namespace CoreSite.Controllers
             }
         }
 
-        // GET: ReviewController/Delete/5
+        // GET: CreateAccountController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ReviewController/Delete/5
+        // POST: CreateAccountController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

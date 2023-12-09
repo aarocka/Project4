@@ -46,10 +46,17 @@
                 <div class="text-center">
                     <a asp-action="Guest" class="btn btn-secondary">Login as Guest</a>
                 </div>
+                <div class="text-center">
+                    <a asp-action="ForgotPassword" class="btn btn-secondary">Forgot Password</a>
+                </div>
+                <div class="text-center">
+                    <a asp-action="CreateAccount" class="btn btn-secondary">Create Account</a>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
 
 @if (ViewBag.Error != null)
 {

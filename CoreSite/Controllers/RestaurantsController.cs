@@ -86,9 +86,16 @@ namespace CoreSite.Controllers
             return View();
         }
 
+
+
         public ActionResult MakeReservation(int id)
         {
             return RedirectToAction("Id", "Reservation", new { id });
+        }
+
+        public ActionResult MakeReview(int id)
+        {
+            return RedirectToAction("Id", "Review", new { id });
         }
 
         // POST: RestaurantsController/Create

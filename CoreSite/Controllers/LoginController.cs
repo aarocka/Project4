@@ -137,5 +137,14 @@ namespace CoreSite.Controllers
                 return View();
             }
         }
+
+        public ActionResult CreateAccount()
+        {
+            return RedirectToAction("Index", "CreateAccount");
+        }
+
+        public ActionResult ForgotPassword() { 
+            return RedirectToAction("Index", "ForgotPassword");
+        }
     }
 }
