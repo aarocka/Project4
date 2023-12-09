@@ -1,0 +1,83 @@
+﻿@model RestaurantReviewLibrary.Review
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h4>Review</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ReviewId" class="control-label"></label>
+                <input asp-for="ReviewId" class="form-control" />
+                <span asp-validation-for="ReviewId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReviewerId" class="control-label"></label>
+                <input asp-for="ReviewerId" class="form-control" />
+                <span asp-validation-for="ReviewerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReviewerName" class="control-label"></label>
+                <input asp-for="ReviewerName" class="form-control" />
+                <span asp-validation-for="ReviewerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReviewText" class="control-label"></label>
+                <input asp-for="ReviewText" class="form-control" />
+                <span asp-validation-for="ReviewText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FoodQualityRating" class="control-label"></label>
+                <input asp-for="FoodQualityRating" class="form-control" />
+                <span asp-validation-for="FoodQualityRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PriceLevelRating" class="control-label"></label>
+                <input asp-for="PriceLevelRating" class="form-control" />
+                <span asp-validation-for="PriceLevelRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceRating" class="control-label"></label>
+                <input asp-for="ServiceRating" class="form-control" />
+                <span asp-validation-for="ServiceRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AtmosphereRating" class="control-label"></label>
+                <input asp-for="AtmosphereRating" class="form-control" />
+                <span asp-validation-for="AtmosphereRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AVGRating" class="control-label"></label>
+                <input asp-for="AVGRating" class="form-control" />
+                <span asp-validation-for="AVGRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RestaurantName" class="control-label"></label>
+                <input asp-for="RestaurantName" class="form-control" />
+                <span asp-validation-for="RestaurantName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RestaurantId" class="control-label"></label>
+                <input asp-for="RestaurantId" class="form-control" />
+                <span asp-validation-for="RestaurantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

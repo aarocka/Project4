@@ -5,6 +5,7 @@ using System.Net;
 using System.IO;
 using System.Text.Json;
 using Humanizer;
+using Microsoft.CodeAnalysis.CodeActions;
 
 namespace CoreSite.Controllers
 {
@@ -67,6 +68,10 @@ namespace CoreSite.Controllers
             
 
             return View(restaurants);
+        }
+
+        public ActionResult MyReviews() { 
+            return RedirectToAction("Index","MyReviews");
         }
 
         // GET: RestaurantsController/Details/5
