@@ -63,7 +63,11 @@ namespace CoreSite.Controllers
                 return View();
             }
         }
+        
+        public ActionResult Guest() {
 
+            return RedirectToAction("Index","Restaurants");
+        }
 
         // GET: LoginController/Details/5
         public ActionResult Details(int id)
