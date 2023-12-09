@@ -13,7 +13,7 @@ namespace CoreSite.Controllers
         }
 
         public IActionResult Id(int id)
-        {
+        {   
             Reservation reservation = new Reservation();
             reservation.Restaurant = id;
             return View(reservation);
@@ -57,8 +57,6 @@ namespace CoreSite.Controllers
 
             if (data == "true")
             {
-                
-
                 //grab session and check if user is reviewer
                 string session = HttpContext.Session.GetString("UserSession");
                 //deserialize session
