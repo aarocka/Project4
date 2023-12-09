@@ -4,70 +4,112 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="text-primary mb-4">Welcome @ViewBag.UserName</h1>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-primary text-center mb-4">Welcome! @ViewBag.UserName</h1>
+        <h2 class="text-center">Reviewer's Page</h2>
+        <div class="text-center mb-4">
+            <a asp-action="Create" class="btn btn-success">Add a Restaurant</a>
+            <a asp-action="Create" class="btn btn-primary">See Your Reviews</a>
+            <a asp-action="Logout" class="btn btn-danger">Logout</a>
+        </div>
 
-<h1 style="@ViewBag.HideStuff">Login Check</h1>
+        <h3 class="text-center mb-4">Featured Restaurants</h3>
 
-<p>
-    <a asp-action="Create" class="btn btn-success">Create New</a>
-</p>
-<table class="table table-striped table-bordered table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IMGURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AVG)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    <img src="@Html.DisplayFor(modelItem => item.IMGURL)" class="img-fluid" width="150" height="150" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AVG)
-                </td>
-                <td>
-                    <a asp-action="MakeReservation" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Make Reservation</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">Details</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+        <!-- Bootstrap Carousel -->
+        <div id="featuredRestaurantsCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://media-cdn.grubhub.com/image/upload/d_search:browse-images:default.jpg/w_100,q_80,fl_lossy,dpr_2.0,c_fit,f_auto,h_100/kvjje3pptp0nkjq2vksq" class="d-block" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://www.lmnopcreative.com/wp-content/uploads/2021/06/VIA_LOCUSTA_FOR_LMNOP_WEBSITE13-1-1024x652.jpg" class="d-block" alt="Second slide">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="https://www.balebakery.com/uploads/b/7750e350-f540-11eb-8548-ed8837055a0d/Ba_Le-Secondary_Black.png" class="d-block" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://static.ucraft.net/fs/ucraft/userFiles/pho75aurora/images/small-logo.png?v=1587217413" class="d-block" alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cdn0.dontpayfull.com/media/logos/size/120x120/maggianos.com.jpg?v=20190621131938536534" class="d-block" alt="Fifth slide">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Chick-fil-A_Logo.svg/2560px-Chick-fil-A_Logo.svg.png" class="d-block" alt="Sixth slide">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#featuredRestaurantsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#featuredRestaurantsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!-- End of Carousel -->
+        <br />
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IMGURL)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AVG)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            <img src="@item.IMGURL" class="img-fluid" width="150" height="150" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AVG)
+                        </td>
+                        <td>
+                            <a asp-action="MakeReservation" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Make Reservation</a>
+                            <a asp-action="MakeReview" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Make Review</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>

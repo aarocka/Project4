@@ -142,5 +142,24 @@ namespace CoreSite.Controllers
                 return View();
             }
         }
+
+        public ActionResult Logout()
+        {
+            //check if session is null
+            if (HttpContext.Session.GetString("UserSession") == null)
+            {
+                //user is not logged in
+                //Redirect to login page
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                //delete session
+                HttpContext.Session.Remove("UserSession");
+
+                //Redirect to login page
+                return RedirectToAction("Index", "Login");
+            }
+        }
     }
 }

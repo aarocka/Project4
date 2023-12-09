@@ -16,6 +16,7 @@ namespace CoreSite.Controllers
             {
                 //user is not logged in
                 //Redirect to login page
+                ViewBag.UserName = "Guest";
                 return RedirectToAction("Index", "Login");
             }
             else
@@ -27,6 +28,8 @@ namespace CoreSite.Controllers
                     PropertyNameCaseInsensitive = true,
                     IncludeFields = true
                 });
+
+                ViewBag.UserName = userSession.UserName;
 
                 //get reservations from api
                 //make a get request to the api

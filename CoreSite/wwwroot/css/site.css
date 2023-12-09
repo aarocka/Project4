@@ -20,3 +20,33 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.carousel-item img {
+    max-width: 300px !important;
+    max-height: 300px !important;
+    margin: auto;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-image: none;
+}
+
+    .carousel-control-prev-icon:after,
+    .carousel-control-next-icon:after {
+        content: '';
+        display: inline-block;
+        border: solid black;
+        border-width: 0 3px 3px 0;
+        padding: 3px;
+    }
+
+    .carousel-control-prev-icon:after {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+    }
+
+    .carousel-control-next-icon:after {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }

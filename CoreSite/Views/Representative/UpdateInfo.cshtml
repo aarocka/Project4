@@ -4,9 +4,7 @@
     ViewData["Title"] = "UpdateInfo";
 }
 
-<h1>UpdateInfo</h1>
-
-<h4>Restaurant</h4>
+<h1>Update Restaurant Info</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -42,15 +40,16 @@
                 <input asp-for="IMGURL" class="form-control" />
                 <span asp-validation-for="IMGURL" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<br />
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary">Go Back</a>
 </div>
 
 @section Scripts {
